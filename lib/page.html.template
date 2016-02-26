@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<!--
+Copyright 2015-2016 the project authors as listed in the AUTHORS file.
+All rights reserved. Use of this source code is governed by the
+license that can be found in the LICENSE file.
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <title><DASHBOARD_TITLE></title>
+
+    <style>
+      table tr:nth-child(even) {
+        background-color: #ccc;
+      }
+      table tr:nth-child(odd) {
+        background-color: #e8e8ee;
+     }
+     </style>
+  </head>
+
+  <body style="overflow-x:hidden;overflow-y:hidden;">
+    <script>
+      var socket = new io.connect('<URL_TYPE>://' + window.location.host);
+      var recentActivity = new Array();
+      socket.on('recent_activity', function(newEntry) {
+        var activityElement = document.getElementById("activity");
+        recentActivity.unshift(newEntry) ;
+        if (recentActivity.length > 200) {
+          recentActivity.pop();
+        }
+        activityElement.innerHTML = recentActivity.join('<BR>');
+      });
+
+      function sendCommand() {
+        var event = new Object();
+        event.house = document.getElementById("house").value;
+        event.module = document.getElementById("module").value;
+        event.command = document.getElementById("command").value;
+        socket.emit('sendX10command', event);
+      }
+
+      var resizeActivity = function() {
+        var activityElement = document.getElementById("activity");
+        activityElement.style.height = (window.innerHeight - 60) + 'px';
+      }
+
+      window.addEventListener('resize', function() {
+        resizeActivity();
+      });
+
+      window.onload = function() {
+        resizeActivity();
+      };
+
+    </script>
+  
+    <table width="100%" height="100%">
+      <tr><td>  
+        <table width="100%" >
+          <tr>
+            <td>H (A-P) <input size="2" maxlength="2" id="house" type="text"> 
+                M (1-16) <input size="2" maxlength="2" id="module" type="text">
+                C (0/1) <input size="2" maxlength="2" id="command" type="text"></td>
+            <td><button style="width:100%" onclick="sendCommand()">Send</button></td>
+          </tr>
+        </table>
+      </td></tr>
+      <tr><td>  
+        <table height="100%" width="100%">
+          <tr><td>  
+            <div id="activity" style="width=100%;overflow:auto;font-size:11px"></div>
+          </tr></td>  
+        </table>
+      </td></tr>
+    </table>
+  </body>
+</html>

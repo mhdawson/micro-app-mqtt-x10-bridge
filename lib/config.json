@@ -1,0 +1,8 @@
+{
+  "serverPort": 3000,
+  "useLaunchWindow": "false",
+  "serialPort": "/dev/ttyUSB0",
+  "MaxRecentActivity": 100,
+  "topic": "house/x10",
+  "mqttServerUrl": "tcp://X.X.X.X:1883"
+}
