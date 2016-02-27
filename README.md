@@ -26,11 +26,11 @@ serial port itself.
 
 The command publish to mqtt has the following elements:
 
-* house is a capital letter from  A through O
-* module is an integer between 1 and 16
-* command is either 0 to turn on or 1 to turn off
+* **house** is a capital letter from  A through O
+* **module** is an integer between 1 and 16
+* **command** is either 0 to turn on or 1 to turn off
 
-I use this with one of my Raspberry Pis (Yay for ARM Node.js !)
+I use this with one of my Raspberry Pis (hooray for ARM Node.js !)
 over a [usb-to-serial cable]
 (http://www.ebay.ca/itm/301723477663?_trksid=p2060353.m2749.l2649&ssPageName=STRK%3AMEBIDX%3AIT)
 although it should work on a regular computer as well.
@@ -63,7 +63,7 @@ The configuration entries that must be updated include:
 When the micro-app is started it will list the avialable serial ports to 
 the console which can help in identifying the port to configure.
 
-As a micro-app the dashboard also supports other options like authentication and
+As a micro-app the bridge also supports other options like authentication and
 tls for the GUI connection.  See the documentation for the micro-app-framework
 for additional details.
 
