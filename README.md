@@ -125,8 +125,8 @@ configurtion options that are availble (ex using tls, authentication, serverPort
 
 ## other modules
 
-[serialport](https://www.npmjs.com/package/serialport)
-[node-x10-comm](https://www.npmjs.com/package/node-x10-comm)
+* [serialport](https://www.npmjs.com/package/serialport)
+* [node-x10-comm](https://www.npmjs.com/package/node-x10-comm)
 
 # TODO
 Add validation to GUI entry boxes to only allow the valid range for each entry box
