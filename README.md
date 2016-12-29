@@ -4,12 +4,17 @@ Micro app that allows x10 commands to triggered through
 mqtt. It allows you to publish an x10 command in the form of:
 
 <PRE>
-house,module,command
+house,module,command:delay
 </PRE>
 
 to the configured mqtt topic and the brige will send out the
 x10 command over a serial port to a connected X10 CM17A
-transmitter module (http://www.x10.com/cm17a.html). 
+transmitter module (http://www.x10.com/cm17a.html). The delay
+is optional and if not specfied the command format is simply:
+
+<PRE>
+house,module,command
+</PRE>
 
 I plan to use this along with other 433Mhz connected devices to 
 control light and appliances in my house.  In particular its
@@ -29,6 +34,11 @@ The command publish to mqtt has the following elements:
 * **house** is a capital letter from  A through O
 * **module** is an integer between 1 and 16
 * **command** is either 0 to turn on or 1 to turn off
+
+and optionaly:
+
+* **delay** delay in milliseconds before x10 command will be sent.
+
 
 I use this with one of my Raspberry Pis (hooray for ARM Node.js !)
 over a [usb-to-serial cable]
